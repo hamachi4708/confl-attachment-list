@@ -4,11 +4,16 @@ A attachment list for your Confluence.
 
 ## Description
 
+This script shows the page's descendant's attachment list.
+
 like this:
 
 ***DEMO:***
 
 ![Demo](./img/result.png)
+
+[P] is a page.
+[A] is a attachment.
 
 ## Usage
 
