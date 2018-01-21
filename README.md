@@ -1,7 +1,5 @@
 # confl-attachment-list
 
-![Badge Status](https://ci-as-a-service)
-
 A attachment list for your Confluence.
 
 ## Description
