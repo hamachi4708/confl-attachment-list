@@ -31,27 +31,27 @@ var $target = $('#descendants-attachments-list');
 var root = ( $target.attr('data-url') == 'this' ) ? $('meta[name=ajs-page-id]').attr('content') : $target.attr('data-url');
 
 function attachmentsList(contentId, $t){
-$t.append('<ul name="' + contentId +  '"></ul>');
-var $tul = $t.find('ul[name='  + contentId +   ']');
-$.when(
-$.getJSON(baseURL + apiPreURL + contentId +apiPostURL_attach , function(data) {
-for(let r in data.results) {
-$tul.append('<li>[A]' +
-'<a href="' + baseURL + data.results[r]._links.download.toString() + '" download>DL</a> / ' +
-'<a href="' + baseURL + data.results[r]._links.webui.toString() + '">Preview</a> : ' +
-data.results[r].title.toString() + '</li>');
-}
-})
-).done(function() {
-$.getJSON(baseURL + apiPreURL + contentId +apiPostURL_page , function(data) {
-for(let r in data.results) {
-$tul.append('<li name="' + data.results[r].id + '">[P]' +
-'<a href="' + baseURL + data.results[r]._links.tinyui.toString() + ' ">' +
-data.results[r].title.toString() + '</a></li>');
-attachmentsList(data.results[r].id, $tul);
-}
-});
-});
+    $t.append('<ul name="' + contentId +  '"></ul>');
+    var $tul = $t.find('ul[name='  + contentId +   ']');
+    $.when(
+        $.getJSON(baseURL + apiPreURL + contentId +apiPostURL_attach , function(data) {
+            for(let r in data.results) {
+                $tul.append('<li>[A]' +
+                '<a href="' + baseURL + data.results[r]._links.download.toString() + '" download>DL</a> / ' +
+                '<a href="' + baseURL + data.results[r]._links.webui.toString() + '">Preview</a> : ' +
+                data.results[r].title.toString() + '</li>');
+            }
+        })
+    ).done(function() {
+        $.getJSON(baseURL + apiPreURL + contentId +apiPostURL_page , function(data) {
+            for(let r in data.results) {
+                $tul.append('<li name="' + data.results[r].id + '">[P]' +
+                '<a href="' + baseURL + data.results[r]._links.tinyui.toString() + ' ">' +
+                data.results[r].title.toString() + '</a></li>');
+                attachmentsList(data.results[r].id, $tul);
+            }
+        });
+    });
 };
 
 attachmentsList(root, $target);
